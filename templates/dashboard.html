@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %} User-Role-Base Flask Application {% endblock %}
+
+{% block content %}
+
+{% include 'header.html' %}
+{% include 'navigation.html' %}
+
+<br>
+{% include 'message.html' %}
+{% if title == "teachers" or title == "students" %}
+<div class="w3-responsive">
+    {% if title == "teachers" %}
+    <h3 class="w3-center">All Teachers' Details</h3>
+    {% elif title == "students" %}
+    <h3 class="w3-center">All Students' Details</h3>
+    {% endif %}
+    <table class="w3-table-all w3-hoverable">
+        <thead>
+        <tr class="w3-light-grey">
+            <th>Username</th>
+            <th>Email ID</th>
+            <th>Role</th>
+        </tr>
+        </thead>
+        {% for user in data %}
+        <tr>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.role.value }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+</div>
+{% elif title == "marks" %}
+<h3 class="w3-center">Your Subject Marks</h3>
+{% endif %}
+
+{% endblock %}
